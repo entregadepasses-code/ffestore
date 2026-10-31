@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#08080b">
+<title>FF ESTORE — Passe Booyah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,800;1,800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+<symbol id="bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8a3 3 0 0 1 6 0"/></symbol>
+<symbol id="box" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9"/></symbol>
+<symbol id="card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18"/></symbol>
+<symbol id="shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+<symbol id="head" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="2"/><rect x="17" y="14" width="4" height="6" rx="2"/></symbol>
+<symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+<symbol id="alert" viewBox="0 0 24 24"><path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/></symbol>
+<symbol id="ver" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#2f95ff" stroke="none"/><path d="M7 12.5l3.5 3.5L17 9" stroke="#fff" stroke-width="2.6"/></symbol>
+<symbol id="wa" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5z"/><path d="M9.2 8.6c.2 2.4 2.6 4.8 5 5l1.1-1.1-1.6-.9-.7.6c-.8-.3-1.5-1-1.8-1.8l.6-.7-.9-1.6z"/></symbol>
+<symbol id="ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+</defs></svg>
+
+<header class="bar">
+  <button class="ib" id="openMenu" aria-label="Abrir menu"><svg class="i"><use href="#menu"/></svg></button>
+  <div class="logo">FF</div>
+  <div class="brand"><b>FF ESTORE <svg class="i" style="width:18px;height:18px;stroke-width:0"><use href="#ver"/></svg></b><small><i class="dot"></i>Suporte online</small></div>
+  <button class="ib" id="openTrack" aria-label="Acompanhar pedido"><svg class="i"><use href="#search"/></svg></button>
+</header>
+
+<main class="wrap">
+  <section class="hero" id="inicio">
+    <span class="pill"><i class="dot"></i>Entrega automática após o PIX</span>
+    <h1>Seu Passe Booyah<br><span>na conta, na hora</span></h1>
+    <p class="sub">Informe o UID, pague no PIX e receba o passe direto no Free Fire.</p>
+  </section>
+
+  <section id="produto"><div class="skel" id="skel"></div><article class="prod" id="prod" hidden>
+    <div class="img"><span class="chip" id="chip"></span><img id="pimg" alt="Passe Booyah" width="640" height="440"></div>
+    <div class="body">
+      <h2 id="pname"></h2><p id="pdesc"></p>
+      <div class="row"><div class="price" id="pprice"></div><div class="stock">Disponíveis<b id="pstock"></b></div></div>
+      <p class="notice" id="pnote" hidden></p>
+      <button class="btn red" id="buy">COMPRAR</button>
+    </div>
+  </article></section>
+
+  <section class="sec" id="faq">
+    <h2>Perguntas Frequentes</h2><div class="ul"></div>
+    <details><summary><span class="ic"><svg class="i"><use href="#box"/></svg></span>Como recebo meu Passe?<svg class="i chev"><use href="#chev"/></svg></summary><p>Depois que o Mercado Pago confirma o PIX, o Passe Booyah é enviado automaticamente para o UID informado. Você acompanha tudo na tela.</p></details>
+    <details><summary><span class="ic"><svg class="i"><use href="#card"/></svg></span>Quais formas de pagamento?<svg class="i chev"><use href="#chev"/></svg></summary><p>Apenas PIX, processado pelo Mercado Pago. O QR Code vale por 30 minutos.</p></details>
+    <details><summary><span class="ic"><svg class="i"><use href="#shield"/></svg></span>Preciso criar conta?<svg class="i chev"><use href="#chev"/></svg></summary><p>Não. Você só informa o UID. Guarde o número do pedido e o código de acompanhamento que aparecem após a compra.</p></details>
+    <details><summary><span class="ic"><svg class="i"><use href="#head"/></svg></span>Como falo com o suporte?<svg class="i chev"><use href="#chev"/></svg></summary><p>Pelo botão de suporte (WhatsApp), pelo Instagram @cleivixx ou pelo e-mail ffestore0@gmail.com. Tenha o número do pedido em mãos.</p></details>
+    <details><summary><span class="ic"><svg class="i"><use href="#mail"/></svg></span>Como acompanho meu pedido?<svg class="i chev"><use href="#chev"/></svg></summary><p>Toque na lupa no topo e informe o número do pedido e o código de acompanhamento.</p></details>
+  </section>
+  <section class="sec" id="contato">
+    <h2>Fale com a gente</h2><div class="ul"></div>
+    <div class="cts">
+      <a class="ct" href="https://wa.me/5549999163265" target="_blank" rel="noopener"><span class="t2"><svg class="i"><use href="#wa"/></svg></span><span class="tx"><b>WhatsApp</b><small>Atendimento rápido e direto</small><em>(49) 99916-3265</em></span><svg class="i arr"><use href="#chev"/></svg></a>
+      <a class="ct" href="https://instagram.com/cleivixx" target="_blank" rel="noopener"><span class="t2"><svg class="i"><use href="#ig"/></svg></span><span class="tx"><b>Instagram</b><small>Novidades e avisos da loja</small><em>@cleivixx</em></span><svg class="i arr"><use href="#chev"/></svg></a>
+      <a class="ct" href="mailto:ffestore0@gmail.com"><span class="t2"><svg class="i"><use href="#mail"/></svg></span><span class="tx"><b>E-mail</b><small>Suporte por escrito</small><em>ffestore0@gmail.com</em></span><svg class="i arr"><use href="#chev"/></svg></a>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <div class="brand"><div class="logo">FF</div><b>FF ESTORE <svg class="i" style="width:18px;height:18px;stroke-width:0"><use href="#ver"/></svg></b></div>
+  <p class="fdesc">A loja para comprar o Passe Booyah com segurança e entrega automática.</p>
+  <div class="cols">
+    <div><h4>Links úteis</h4><a href="#inicio">Início</a><a href="#produto">Passe Booyah</a><a href="#" id="ftTrack">Acompanhar pedido</a><a href="#faq">Dúvidas</a><a href="#contato">Contato</a></div>
+    <div><h4>Segurança</h4><span class="sf"><svg class="i"><use href="#shield"/></svg>100% seguro</span><span class="sf"><svg class="i"><use href="#lock"/></svg>Dados protegidos</span><span class="sf"><svg class="i"><use href="#check"/></svg>Pagamento verificado</span></div>
+  </div>
+  <h4 style="margin-top:6px">Contato</h4>
+  <a class="fc" href="https://wa.me/5549999163265" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>WhatsApp: (49) 99916-3265</a>
+  <a class="fc" href="mailto:ffestore0@gmail.com"><svg class="i"><use href="#mail"/></svg>E-mail: ffestore0@gmail.com</a>
+  <a class="fc" href="https://instagram.com/cleivixx" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg>Instagram: @cleivixx</a>
+  <div class="copy">© 2026 FF ESTORE. Todos os direitos reservados.</div>
+</div></footer>
+
+<a class="fab" id="fab" target="_blank" rel="noopener" aria-label="Suporte"><svg class="i" style="width:22px;height:22px"><use href="#head"/></svg></a>
+
+<div class="veil" id="veil"></div>
+<nav class="drawer" id="drawer">
+  <button class="nav" id="closeMenu" aria-label="Fechar menu" style="width:auto;padding:8px;align-self:flex-start"><svg class="i"><use href="#x"/></svg></button>
+  <div class="top"><div class="logo">FF</div><b class="dn">FF ESTORE <svg class="i" style="width:18px;height:18px;stroke-width:0"><use href="#ver"/></svg></b><small><i class="dot"></i>Suporte online</small></div>
+  <p class="dl">Navegação</p>
+  <a href="#inicio" class="act"><span class="tile"><svg class="i"><use href="#home"/></svg></span>Início</a>
+  <a href="#produto"><span class="tile"><svg class="i"><use href="#box"/></svg></span>Passe Booyah</a>
+  <button class="nav" id="menuTrack"><span class="tile"><svg class="i"><use href="#bag"/></svg></span>Acompanhar pedido</button>
+  <a href="#faq"><span class="tile"><svg class="i"><use href="#shield"/></svg></span>Dúvidas</a>
+  <p class="dl">Ajuda</p>
+  <a href="https://wa.me/5549999163265" target="_blank" rel="noopener"><span class="tile"><svg class="i"><use href="#head"/></svg></span>Suporte no WhatsApp</a>
+  <div class="dfoot"><svg class="i"><use href="#shield"/></svg><span>Pagamento via PIX, processado pelo Mercado Pago.</span></div>
+</nav>
+
+<section class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><button class="x" id="closeSheet" aria-label="Fechar"><svg class="i"><use href="#x"/></svg></button><div id="sheetBody"></div></section>
+<div class="toast" id="toast" role="status"></div>
+<script src="/app.js"></script>
+</body>
+</html>
